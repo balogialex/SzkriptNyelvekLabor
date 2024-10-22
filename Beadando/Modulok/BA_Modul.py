@@ -1,19 +1,32 @@
+import pyautogui
+import time
+
 class BA_ImageProcessor:
-    def __init__(self, image_path):
-        self.image_path = image_path
+    def __init__(self, log_callback):
+        self.log_message = log_callback  # A callback to log messages to the GUI
 
-    def find_image_on_screen(self):
-        # Dummy function to simulate finding image
-        print("Searching for image on screen...")
 
-def BA_click_location():
-    # Example of a function with initials in the name
-    print("Clicking on the found location...")
+    def find_and_click_image(self):
+        time.sleep(3)
+        try:
+            x3, y3 = pyautogui.center(pyautogui.locateOnScreen("kepek/csillag.png", confidence=0.72))
+            if x3 != None and y3 != None:
+                pyautogui.click(x3, y3)
+                self.log_message("Csillag elkapva")
+                time.sleep(3)
+        except Exception as e:
+            pass
 
-def BA_stop_action():
-    # Example of another function with initials
-    print("Stopping the current action...")
+        try:
+            x3, y3 = pyautogui.center(pyautogui.locateOnScreen("kepek/kagylo.png", confidence=0.85))
+            if x3 != None and y3 != None:
+                pyautogui.click(x3, y3)
+                self.log_message("Kagyló elkapva")
+                time.sleep(3)
+        except Exception as e:
+            pass
 
-def BA_start_action():
-    # Example of a third function with initials
-    print("Starting the action...")
+
+
+
+

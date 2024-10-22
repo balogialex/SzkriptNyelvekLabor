@@ -2,14 +2,14 @@ import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 import threading
 import time
-import Modulok.BA_Modul as BAModul
+import Modulok.BA_Modul as myModul
 
-
-class BAScriptRunner:
+class BA_ScriptRunner:
     def __init__(self, log_widget):
         self.running = False
         self.log_widget = log_widget
         self.script_thread = None
+        self.image_processor = myModul.BA_ImageProcessor(self.log)
 
     def start_script(self):
         self.running = True
@@ -23,24 +23,20 @@ class BAScriptRunner:
 
     def run_script(self):
         while self.running:
-            # Here should be the image locating and clicking logic
-            self.log("Clicked at a specific location.")
-            time.sleep(2)  # Dummy delay for simulating script
+            # Call the custom module's image processing function
+            self.image_processor.find_and_click_image()
 
     def log(self, message):
         self.log_widget.insert(tk.END, message + '\n')
         self.log_widget.see(tk.END)
 
-
 def start():
     if not runner.running:
         runner.start_script()
 
-
 def stop():
     if runner.running:
         runner.stop_script()
-
 
 def create_gui():
     root = tk.Tk()
@@ -57,8 +53,7 @@ def create_gui():
 
     return root, log_area
 
-
 if __name__ == "__main__":
     root, log_area = create_gui()
-    runner = BAScriptRunner(log_area)
+    runner = BA_ScriptRunner(log_area)
     root.mainloop()
