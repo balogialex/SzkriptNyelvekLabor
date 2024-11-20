@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 import threading
-import time
 import Modulok.BA_Modul as myModul
 
 class BA_ScriptRunner:
@@ -23,8 +22,7 @@ class BA_ScriptRunner:
 
     def run_script(self):
         while self.running:
-            # Call the custom module's image processing function
-            self.image_processor.find_and_click_image()
+            self.image_processor.ba_find_and_click_image()
 
     def log(self, message):
         self.log_widget.insert(tk.END, message + '\n')
@@ -40,7 +38,7 @@ def stop():
 
 def create_gui():
     root = tk.Tk()
-    root.title("ABC App")
+    root.title("BA App")
 
     start_button = tk.Button(root, text="Start", command=start)
     start_button.pack(pady=10)

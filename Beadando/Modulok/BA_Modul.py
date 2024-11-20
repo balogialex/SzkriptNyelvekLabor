@@ -3,11 +3,11 @@ import time
 
 class BA_ImageProcessor:
     def __init__(self, log_callback):
-        self.log_message = log_callback  # A callback to log messages to the GUI
+        self.log_message = log_callback
 
 
-    def find_and_click_image(self):
-        time.sleep(3)
+    def ba_find_and_click_image(self):
+        time.sleep(5)
         try:
             x3, y3 = pyautogui.center(pyautogui.locateOnScreen("kepek/csillag.png", confidence=0.72))
             if x3 != None and y3 != None:
